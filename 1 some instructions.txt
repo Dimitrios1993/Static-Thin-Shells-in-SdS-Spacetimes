@@ -1,0 +1,51 @@
+Data Files and Figure Reproduction
+
+These txt files contain the data extracted from the global scanner code of the w0-lambda plane for each case analyzed in our paper.
+
+File Naming Convention:
+The filenames indicate the specific parameters of each case:
+mrat: Mass ratio (m+/m-)
+Lrat: Lambda ratio (Lambda+/Lambda-)
+
+Note on High-Resolution Data:
+For the case where m+/m- = 1.25 and Lambda+/Lambda- = 0.75, we uploaded a file generated with a finer step size of 0.001 (mrat1.25Lrat0.75step0.001.txt), instead of the 0.0001 step size originally used in the paper. We reduced the step size here to eliminate the numerical "staircase" artifacts along the transition diagonal line of the R0 and sigma0 distributions. As noted in the paper, R0 and sigma0 transition smoothly to smaller and larger values, respectively. Capturing this analytically without artifacts takes massive computational time and power, which is why we provided this finer resolution file (~10mb, ~7 hours of run time, instead of 100mb-70 hours).
+
+How to Reproduce the Figures:
+The Jupyter Notebook (.ipynb) provided in our GitHub repository uses older filenames in the code. To reproduce the paper's figures, just do the following:
+
+Upload the provided txt files into your working environment (Colab, VS Code, etc.).
+
+Open the .ipynb file.
+
+Change the filenames in the code to match the ones you just uploaded.
+
+Your code block should look exactly like this:
+
+# ==========================================
+# 4. CASE SETUP
+# ==========================================
+cases = [
+    {
+        'file': 'mrat1.25Lrat1.25.txt',
+        'title': r"$\frac{m_+}{m_-}=1.25,\;\frac{\Lambda_+}{\Lambda_-}=1.25$",
+        'special_ticks': False, 'extrapolate': False
+    },
+    {
+        'file': 'mrat1.25Lrat0.75step0.0001.txt',
+        'title': r"$\frac{m_+}{m_-}=1.25,\;\frac{\Lambda_+}{\Lambda_-}=0.75$",
+        'special_ticks': False, 'extrapolate': False
+    },
+    {
+        'file': 'mrat1.25L0.txt',
+        'title': r"$\frac{m_+}{m_-}=1.25,\;\Lambda_{\pm}=0$",
+        'special_ticks': True, 'extrapolate': True
+    },
+    {
+        'file': 'mrat1.25Lrat1.txt',
+        'title': r"$\frac{m_+}{m_-}=1.25,\;\frac{\Lambda_+}{\Lambda_-}=1.0$",
+        'special_ticks': False, 'extrapolate': False
+    }
+]
+
+
+Thanks.
